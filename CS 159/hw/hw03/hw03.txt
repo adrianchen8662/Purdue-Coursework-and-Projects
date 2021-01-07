@@ -1,0 +1,272 @@
+The following program submission has been recorded:
+
+Student: chen3124
+Class: CS159
+Section: 13322
+Assignment: hw03.c
+Submission: 2020-02-22 21:14
+
+If the above is incorrect, you are responsible for resubmitting the assignment or seeking assistance from a course staff member prior to the due date! Assignments will never be accepted by e-mail.
+
+If this is for a lab assignment, only one member must be designated to make a submission for the group.  Graders will not evaluate submissions from multiple group members to determine which effort you actually want graded.
+
+*** Please do not reply to this email ***
+
+The contents of the submission:
+     1	
+     2	/***************************************************************************
+     3	*
+     4	*  Programmer and Purdue Email Address:
+     5	*  1. chen3124@purdue.edu
+     6	*
+     7	*  Homework #: 03
+     8	*
+     9	*  Academic Integrity Statement:
+    10	*
+    11	*  I have not used source code obtained from any other unauthorized source, 
+    12	*  either modified or unmodified.  Neither have I provided access to my code 
+    13	*  to another. The effort I am submitting is my own original work.
+    14	*
+    15	*  Day, Time, Location of Lab: Tuesday, 9:30AM, SC189
+    16	*
+    17	*  Program Description: Finds the total distance and angle displaced from (0,0)
+    18	*
+    19	***************************************************************************/
+    20	
+    21	#include<stdio.h>
+    22	#include<math.h>
+    23	
+    24	//function declaration
+    25	double inputAngle(double counter); 
+    26	double inputDistance(double counter);
+    27	double xDistance(double distance, double angle);
+    28	double yDistance(double distance, double angle);
+    29	double distanceDisplacement(double Ax, double Ay);
+    30	double angleDisplacement(double Ax, double Ay);
+    31	void outputDisplay(double distancedisplaced, double angledisplaced);
+    32	
+    33	int main()
+    34	{
+    35	  //variable declaration
+    36	  double angle1; //stores the first angle
+    37	  double angle2; //stores the second angle
+    38	  double angle3; //stores the third angle
+    39	  double angle4; //stores the fourth angle
+    40	  double distance1; //stores the first distance
+    41	  double distance2; //stores the second distance
+    42	  double distance3; //stores the third distance
+    43	  double distance4; //stores the fourth distance
+    44	  double totalxdistance; //stores the total x distance displaced
+    45	  double totalydistance; //stores the total y distance displaced
+    46	  double distancedisplaced; //stores the distance displaced from (0,0)
+    47	  double angledisplaced; //stores the angle displaced from (0,0)
+    48	  double counter = 1; //counts which angle/distance is being inputted
+    49	
+    50	  //execution statements
+    51	  angle1 = inputAngle(counter);
+    52	  counter++;
+    53	  angle2 = inputAngle(counter);
+    54	  counter++;
+    55	  angle3 = inputAngle(counter);
+    56	  counter++;
+    57	  angle4 = inputAngle(counter);
+    58	  counter = 1;
+    59	  distance1 = inputDistance(counter);
+    60	  counter++;
+    61	  distance2 = inputDistance(counter);
+    62	  counter++;
+    63	  distance3 = inputDistance(counter);
+    64	  counter++;
+    65	  distance4 = inputDistance(counter);
+    66	
+    67	  //calculates the total x and y distance
+    68	  totalxdistance = xDistance(distance1, angle1) + xDistance(distance2, angle2) + xDistance(distance3, angle3) + xDistance(distance4, angle4);
+    69	  totalydistance = yDistance(distance1, angle1) + yDistance(distance2, angle2) + yDistance(distance3, angle3) + yDistance(distance4, angle4);
+    70	
+    71	  //calculates the distance and angle displaced from (0,0)
+    72	  distancedisplaced = distanceDisplacement(totalxdistance, totalydistance);
+    73	  angledisplaced = angleDisplacement(totalxdistance, totalydistance);
+    74	  
+    75	  //returns the distance and angle displaced
+    76	  outputDisplay(distancedisplaced, angledisplaced);
+    77	  return(0);
+    78	}
+    79	
+    80	/***************************************************************************
+    81	*
+    82	*  Function Information
+    83	*
+    84	*  Name of Function: inputAngle
+    85	*
+    86	*  Function Return Type: double
+    87	*
+    88	*  Parameters (list data type, name, and comment one per line):
+    89	*    1. double counter - counts which angle is being asked for
+    90	*
+    91	*  Function Description: Gets the input for angle
+    92	*
+    93	***************************************************************************/
+    94	
+    95	double inputAngle(double counter)
+    96	{
+    97	  //local declaration
+    98	  double input; //stores the input
+    99	
+   100	  //execution statements
+   101	  printf("Enter angle [degrees] for leg #%.0lf -> ", counter);
+   102	  scanf("%lf",&input);
+   103	  return(input);
+   104	}
+   105	
+   106	/***************************************************************************
+   107	*
+   108	*  Function Information
+   109	*
+   110	*  Name of Function: inputDistance
+   111	*
+   112	*  Function Return Type: double
+   113	*
+   114	*  Parameters (list data type, name, and comment one per line):
+   115	*    1. double counter - counts which distance is being asked for
+   116	*
+   117	*  Function Description: Gets the input for distance
+   118	*
+   119	***************************************************************************/
+   120	
+   121	double inputDistance(double counter)
+   122	{
+   123	  //variable declaration
+   124	  double input; //stores the input
+   125	  
+   126	  //execution statements
+   127	  printf("Enter distance traveled [m] for leg #%0.lf -> ", counter);
+   128	  scanf("%lf",&input);
+   129	  return input;
+   130	}
+   131	
+   132	/***************************************************************************
+   133	*
+   134	*  Function Information
+   135	*
+   136	*  Name of Function: xDistance
+   137	*
+   138	*  Function Return Type: double
+   139	*
+   140	*  Parameters (list data type, name, and comment one per line):
+   141	*    1. double distance - stores distance
+   142	*    2. double angle - stores angle
+   143	*
+   144	*  Function Description: Finds the distance in the x-direction
+   145	*
+   146	***************************************************************************/
+   147	
+   148	double xDistance(double distance, double angle)
+   149	{
+   150	  //variable declaration
+   151	  double xdist; //stores the x distance
+   152	
+   153	  //execution statements
+   154	  xdist = distance * cos((M_PI / 180) * angle);
+   155	  return xdist;
+   156	}
+   157	
+   158	/***************************************************************************
+   159	*
+   160	*  Function Information
+   161	*
+   162	*  Name of Function: yDistance
+   163	*
+   164	*  Function Return Type: double
+   165	*
+   166	*  Parameters (list data type, name, and comment one per line):
+   167	*    1. double distance - stores distance
+   168	*    2. double angle - stores angle
+   169	*
+   170	*  Function Description: Finds the distance in the y-direction
+   171	*
+   172	***************************************************************************/
+   173	
+   174	double yDistance(double distance, double angle)
+   175	{ 
+   176	  //variable declaration
+   177	  double ydist; //stores the y distance
+   178	  
+   179	  //execution statements
+   180	  ydist = distance * sin((M_PI / 180) * angle);
+   181	  return ydist;
+   182	}
+   183	
+   184	/***************************************************************************
+   185	*
+   186	*  Function Information
+   187	*
+   188	*  Name of Function: distanceDisplacement
+   189	*
+   190	*  Function Return Type: double
+   191	*
+   192	*  Parameters (list data type, name, and comment one per line):
+   193	*    1. double Ax - stores the total x distance
+   194	*    2. double Ay - stores the total y distance
+   195	*
+   196	*  Function Description: Finds the total distance displacement
+   197	*
+   198	***************************************************************************/
+   199	
+   200	double distanceDisplacement(double Ax, double Ay)
+   201	{
+   202	  //variable declaration
+   203	  double distancedisp; //stores the total distance displaced
+   204	
+   205	  //execution statements
+   206	  distancedisp = sqrt(pow(Ax,2) + pow(Ay,2));
+   207	  return distancedisp;
+   208	}
+   209	
+   210	/***************************************************************************
+   211	*
+   212	*  Function Information
+   213	*
+   214	*  Name of Function: angleDisplacement
+   215	*
+   216	*  Function Return Type: double
+   217	*
+   218	*  Parameters (list data type, name, and comment one per line):
+   219	*    1. double Ax - stores the total x direction
+   220	*    2. double Ay - stores the total y direction
+   221	*
+   222	*  Function Description: Finds the total angle displacement
+   223	*
+   224	***************************************************************************/
+   225	
+   226	double angleDisplacement(double Ax, double Ay)
+   227	{
+   228	  //variable declaration
+   229	  double angledisp; //stores the total angle displaced
+   230	
+   231	  //execution statements
+   232	  angledisp = (180 / M_PI) * (atan(Ay / Ax));
+   233	  return angledisp;
+   234	}
+   235	
+   236	/***************************************************************************
+   237	*
+   238	*  Function Information
+   239	*
+   240	*  Name of Function: outputDisplay
+   241	*
+   242	*  Function Return Type: void
+   243	*
+   244	*  Parameters (list data type, name, and comment one per line):
+   245	*    1. double distancedisp - stores the total distance displaced
+   246	*    2. double angledisp - stores the total angle displaced
+   247	*
+   248	*  Function Description: Outputs the distance displacement and angle displacement
+   249	*
+   250	***************************************************************************/
+   251	
+   252	void outputDisplay(double distancedisp, double angledisp)
+   253	{
+   254	  //execution statements
+   255	  printf("\n\nDistance displacement: %.0lf (m)", distancedisp);
+   256	  printf("\nAngle displacement: %.0lf (degrees)\n", angledisp);
+   257	}

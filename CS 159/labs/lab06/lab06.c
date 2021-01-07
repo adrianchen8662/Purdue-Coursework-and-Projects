@@ -1,0 +1,240 @@
+
+/***************************************************************************
+ *
+ *  Programmers and Purdue Email Addresses:
+ *  1. chen3124@purdue.edu
+ *  2. joshi99@purdue.edu
+ *  3. charte277@purdue.edu (delete line if no third partner)
+ *
+ *  Lab #: 06
+ *
+ *  Academic Integrity Statement:
+ *
+ *  We have not used source code obtained from any other unauthorized source,
+ *  either modified or unmodified.  Neither have we provided access to our code
+ *  to another. The effort we are submitting is our own original work.
+ *
+ *  Day, Time, Location of Lab: Tuesday, 9:30AM, SC 189
+ *
+ *  Program Description: 
+ *
+ ***************************************************************************/
+
+#include<stdio.h>
+
+int integerInput();
+int tenThousandthsSplit(int integer);
+int thousandthsSplit(int integer);
+int hundredthsSplit(int integer);
+int tensSplit(int integer);
+int onesSplit(int integer);
+int negativeDeterminant(int integer);
+void printout(int tens, int ones);
+void output(int tenThousandths, int thousandths, int hundredths, int tens, int ones);
+
+int main()
+{
+  int integer = 0;
+  int tenThousandths = 0;
+  int thousandths = 0;
+  int hundredths = 0;
+  int tens = 0;
+  int ones = 0;
+
+  integer = integerInput();
+  printf("Text equivalence: ");
+  integer = negativeDeterminant(integer);
+  tenThousandths = tenThousandthsSplit(integer);
+  thousandths = thousandthsSplit(integer);
+  hundredths = hundredthsSplit(integer);
+  tens = tensSplit(integer);
+  ones = onesSplit(integer);
+  output(tenThousandths, thousandths, hundredths, tens, ones);
+  return 0;
+}
+
+int integerInput()
+{
+  int input;
+
+  printf("Enter integer in range [-99999, 99999] -> ");
+  scanf("%d", &input);
+
+  return input;
+}
+
+int tenThousandthsSplit(int integer)
+{
+  int tenThousandths;
+
+  tenThousandths = integer / 10000;
+
+  return tenThousandths;
+}
+
+int thousandthsSplit(int integer)
+{
+  int thousandths;
+
+  thousandths = (integer / 1000) % 10;
+
+  return thousandths;
+}
+
+int hundredthsSplit(int integer)
+{
+  int hundredths;
+
+  hundredths = (integer / 100) % 10;
+
+  return hundredths;
+}
+
+int tensSplit(int integer)
+{
+  int tens;
+
+  tens = (integer / 10) % 10;
+  return tens;
+}
+
+int onesSplit(int integer)
+{
+  int tensAndOnes;
+
+  tensAndOnes = integer % 10;
+
+  return tensAndOnes;
+}
+
+int negativeDeterminant(int integer)
+{
+  if (integer < 0)
+  {
+    integer = integer * -1;
+    printf("minus ");
+  }
+  return integer;
+}
+void printout(int tens, int ones)
+{
+  if(tens == 1)
+  {
+    switch(ones)
+    {
+      case 0:
+        printf("ten");
+        break;
+      case 1:
+        printf("eleven");
+        break;
+      case 2:
+        printf("twelve");
+        break;
+      case 3:
+        printf("thirteen");
+        break;
+      case 4:
+        printf("fourteen");
+        break;
+      case 5:
+        printf("fifteen");
+        break;
+      case 6:
+        printf("sixteen");
+        break;
+      case 7:
+        printf("seventeen");
+        break;
+      case 8:
+        printf("eighteen");
+        break;
+      case 9:
+        printf("nineteen");
+        break;
+    }
+  }
+  else
+  {
+    switch(tens)
+    {
+      case 2:
+        printf("twenty");
+        break;
+      case 3:
+        printf("thirty");
+        break;
+      case 4:
+        printf("fourty");
+        break;
+      case 5:
+        printf("fifty");
+        break;
+      case 6:
+        printf("sixty");
+        break;
+      case 7:
+        printf("seventy");
+        break;
+      case 8:
+        printf("eighty");
+        break;
+      case 9:
+        printf("ninety");
+        break;
+    }
+    if (ones != 0 || tens < 2)
+    {
+      if (ones != 0 && tens != 0)
+      {
+        printf("-");
+      }
+      switch(ones)
+      {
+        case 1:
+          printf("one");
+          break;
+        case 2:
+          printf("two");
+          break;
+        case 3:
+          printf("three");
+          break;
+        case 4:
+          printf("four");
+          break;
+        case 5:
+          printf("five");
+          break;
+        case 6:
+          printf("six");
+          break;
+        case 7:
+          printf("seven");
+          break;
+        case 8:
+          printf("eight");
+          break;
+        case 9:
+          printf("nine");
+          break;
+      }
+    }
+  }
+}
+void output(int tenThousandths, int thousandths, int hundredths, int tens, int ones)
+{
+	printout(tenThousandths, thousandths);
+	if (tenThousandths != 0 || thousandths != 0)
+	{
+		printf(" thousand ");
+	}
+	printout(0, hundredths);
+	if (hundredths != 0)
+	{
+		printf(" hundred ");
+	}
+	printout(tens, ones);
+	printf("\n");
+}
+
